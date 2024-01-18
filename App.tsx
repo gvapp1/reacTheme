@@ -4,10 +4,6 @@ import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
 import { Colors, } from 'react-native/Libraries/NewAppScreen';
 import { Navigator } from './src/navigator/Navigator';
-import { PermissionsProvider } from './src/context/PermissionsContext';
-import {enableLatestRenderer} from 'react-native-maps';
-
-enableLatestRenderer();
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -19,7 +15,7 @@ function App(): React.JSX.Element {
   const MyTheme = {
     ...DefaultTheme,
     dcurrentTheme: 'light',
-    //dark: false,
+    dark: false,
     dividerColor: 'rgba(0,0,0,0.6)',
     colors: {
       primary: '#FFFFFF',
@@ -29,22 +25,12 @@ function App(): React.JSX.Element {
       border: 'black',
       notification: 'teal',
     },
-  };
-
-  const AppState = ({ children }: any) => {
-    return (
-      <PermissionsProvider>
-        {children}
-      </PermissionsProvider>
-    )
-  }
+  };  
 
   return (
-    // <NavigationContainer theme={MyTheme}>
-    <NavigationContainer>
-      <AppState>
-        <Navigator />
-      </AppState>
+    <NavigationContainer theme={MyTheme}>
+     {/* <NavigationContainer>     */}
+        <Navigator />     
     </NavigationContainer>
   );
 }
